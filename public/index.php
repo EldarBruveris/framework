@@ -1,5 +1,7 @@
 <?php
 
+use App\Controllers\HomeAction;
+use App\Controllers\FormAction;
 use app\Controllers\UserAction;
 use App\Controllers\UserDetailsAction;
 use Router\Router;
@@ -18,5 +20,8 @@ $router = new Router();
 
 $router->addRoute('GET', '/users', new UserAction());
 $router->addRoute('GET', '/users/:userID', new UserDetailsAction());
+$router->addRoute('GET', '/', new HomeAction());
+$router->addRoute('GET', '/form', new FormAction());
+
 
 $router->matchRoute();
