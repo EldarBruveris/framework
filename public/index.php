@@ -2,6 +2,7 @@
 
 use App\Controllers\HomeAction;
 use App\Controllers\FormAction;
+use App\Controllers\ResultAction;
 use app\Controllers\UserAction;
 use App\Controllers\UserDetailsAction;
 use Router\Router;
@@ -22,6 +23,7 @@ $router->addRoute('GET', '/users', new UserAction());
 $router->addRoute('GET', '/users/:userID', new UserDetailsAction());
 $router->addRoute('GET', '/', new HomeAction());
 $router->addRoute('GET', '/form', new FormAction());
+$router->addRoute('POST', '/result', new ResultAction());
 
 
 $router->matchRoute();

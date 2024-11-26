@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Models;
+namespace app\Validation;
 
-class FormModel
+class UserValidation
 {
     public function validate($data)
     {

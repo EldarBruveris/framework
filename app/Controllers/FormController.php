@@ -2,7 +2,7 @@
 
 namespace app\Controllers;
 
-use app\Models\FormModel;
+use app\Validation\UserValidation;
 
 class FormController
 {
@@ -36,7 +36,7 @@ class FormController
 
     private function processForm()
     {
-        $formModel = new FormModel();
+        $formModel = new UserValidation();
         $data = $formModel->validate($_POST);
 
         require_once __DIR__ . '/../Views/result.php';
