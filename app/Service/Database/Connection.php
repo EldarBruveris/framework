@@ -11,9 +11,9 @@ class Connection {
 
     public static function getInstance(): \PDO{
         if (self::$connection === null) {
-            $dsn = 'pgsql:host=localhost;dbname=frametestdb;';
+            $dsn = 'pgsql:host=db;dbname=frametestdb;';
             $user = 'eldar';
-            $password = 'ebr51004';
+            $password = 'ebr51004MBR';
         
             try {
                 self::$connection = new \PDO($dsn, $user, $password);
