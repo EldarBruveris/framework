@@ -3,7 +3,7 @@
 namespace app\Service\Database;
 
 class Connection {
-    private ?\PDO $connection = null;
+    private static ?\PDO $connection = null;
 
     private function __construct() {
         
