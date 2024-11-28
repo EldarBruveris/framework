@@ -13,7 +13,7 @@ class Connection {
         if (self::$connection === null) {
             $dsn = 'pgsql:host=db;dbname=frametestdb;';
             $user = 'eldar';
-            $password = 'ebr51004MBR';
+            $password = 'ebr51004MBR';  
         
             try {
                 self::$connection = new \PDO($dsn, $user, $password);
