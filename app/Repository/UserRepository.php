@@ -4,7 +4,7 @@ namespace app\Repository;
 use app\Models\User;
 use PDO;
 
-class UserRepository extends AbsrtractRepository{
+class UserRepository extends AbstractRepository{
     //TODO поиск одного пользователя по email/ID/гендер... 
     public function find(array $critery = []){
 
