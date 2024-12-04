@@ -19,8 +19,8 @@ class User{
     }
 
     public function __get(string $name): mixed {
-        if (array_key_exists($name, $this->data)) {
-            return $this->data[$name];
+        if (property_exists($this, $name)) {
+            return $this->$name;
         }
         return null;
     }

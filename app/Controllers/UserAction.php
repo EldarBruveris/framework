@@ -11,10 +11,10 @@ final class UserAction
 {
     public function __invoke()
     {
+        
         $db = new UserRepository;
         $users = $db->findAll();
-        foreach ($users as $user) {
-            echo "ID: {$user->id}, Name: {$user->name}, Email: {$user->email}, Gender: {$user->gender}, Status: {$user->status}\n";
-        }
+    
+        require_once __DIR__ . '/../Views/user/list.php';
     }
 }
