@@ -2,6 +2,7 @@
 namespace app\Repository;
 
 use app\Models\User;
+use app\Models\UserSave;
 use PDO;
 
 class UserRepository extends AbstractRepository{
@@ -23,9 +24,9 @@ class UserRepository extends AbstractRepository{
     }
 
     //TODO сохранение одного пользователя
-    public function save(User $user): bool{
-        $query = "INSERT INTO users (id, name, email, gender, status) VALUES(:id, :name, :email, :gender, :status)";
+    public function save(UserSave $user): bool{
+        $query = "INSERT INTO users (name, email, gender, status) VALUES(:name, :email, :gender, :status)";
         $statement = $this->connection->prepare($query);
-        return $statement->execute([':id' => $user->id, ':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);
+        return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);
     }
 }

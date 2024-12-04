@@ -2,11 +2,14 @@
 
 namespace app\Models;
 
-class User extends UserSave{
-    private int $id;
-    public function __construct(int $id, string $name, string $email, string $gender, string $status)
+class UserSave{
+    protected string $name;
+    protected string $email;
+    protected string $gender;
+    protected string $status;
+
+    public function __construct(string $name, string $email, string $gender, string $status)
     {
-        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->gender = $gender;
