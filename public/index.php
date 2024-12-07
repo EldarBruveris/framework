@@ -1,5 +1,7 @@
 <?php
 
+use App\Controllers\FindAction;
+use App\Controllers\FindResultAction;
 use App\Controllers\HomeAction;
 use App\Controllers\FormAction;
 use App\Controllers\ResultAction;
@@ -23,6 +25,8 @@ $router->addRoute('GET', '/users/:userID', new UserDetailsAction());
 $router->addRoute('GET', '/', new HomeAction());
 $router->addRoute('GET', '/form', new FormAction());
 $router->addRoute('POST', '/result', new ResultAction());
+$router->addRoute('GET', '/find', new FindAction());
+$router->addRoute('POST', '/findResult', new FindResultAction());
 
 
 $router->matchRoute();

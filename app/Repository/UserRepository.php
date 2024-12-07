@@ -7,8 +7,12 @@ use PDO;
 
 class UserRepository extends AbstractRepository{
     //TODO поиск одного пользователя по email/ID/гендер... 
-    public function find(array $critery = []){
-
+    public function find($critery, $value){
+        $query = "SELECT * FROM users WHERE {$critery} = {$value}";
+        $statement = $this->connection->query($query);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        $user = new User($row['id'], $row['name'], $row['email'], $row['gender'], $row['status']);
+        return $user;
     }
 
     //TODO выбрать всех из БД
