@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use app\Repository\UserRepository;
+
 final class UserDetailsAction
 {
     public function __invoke($userID)
     {
-        echo 'User Details Action. ID = ' . $userID;
+        $db = new UserRepository();
+        
+        $user = $db->find('id', $userID);
+
+        require_once __DIR__ . '/../Views/find/findResult.php';
     }
 }

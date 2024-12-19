@@ -31,6 +31,6 @@
     <?php endforeach; ?>
   </ul> -->
   <h1>User is saved succesfully</h1>
-  <a href="/form"><button class="btn">Вернуться назад</button></a>
+  <a href="/users/new"><button class="btn">Вернуться назад</button></a>
 </body>
 </html>

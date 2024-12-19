@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/form"><button class="btn">Добавить пользователя</button></a>
+    <a href="/users/new"><button class="btn">Добавить пользователя</button></a>
     <a href="/find"><button class="btn">Найти пользователя</button></a>
 </body>
 </html>
