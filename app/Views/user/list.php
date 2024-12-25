@@ -52,12 +52,17 @@
       text-align: center;
     }
     .action-btn{
-      display: inline-block;
-      width: 80%;
+      width: 90%;
       background-color: darkseagreen;
       color: #fff;
-      text-decoration: none;
-    } 
+      border: none;
+      height: 35px;
+      font-size: 15px;
+    }
+    .action-btn:hover{
+      cursor: pointer;
+
+    }
     
   </style>
 </head>
@@ -78,9 +83,9 @@
           <td><?=$value->email;?></td>
           <td><?=$value->gender;?></td>
           <td><?=$value->status;?></td>
-          <td class="action-td"><a href="/show" class="action-btn">show</a></td>
-          <td class="action-td"><a href="" class="action-btn">edit</a></td>
-          <td class="action-td"><a href="" class="action-btn">delete</a></td>
+          <td class="action-td"><button onclick="show(<?=$value->id; ?>)" class="action-btn">show</button></td>
+          <td class="action-td"><button class="action-btn">edit</button></td>
+          <td class="action-td"><button class="action-btn">delete</button></td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -88,5 +93,11 @@
       <a href="/users/new"><button class="btn">Добавить пользователя</button></a>
       <a href="/find"><button class="btn">Найти пользователя</button></a>
     </section>
+
+    <script>
+      function show(value){
+        window.location.replace("/show/" + value);
+      }
+    </script>
 </body>
 </html>

@@ -8,12 +8,11 @@ use app\Repository\UserRepository;
 
 final class ShowAction
 {
-    public function __invoke()
+    public function __invoke($userID)
     {
         $db = new UserRepository();
-        $critery = $_POST['choice'];
         
-        $user = $db->find($critery, 'id');
+        $user = $db->find($userID, 'id');
         require_once __DIR__ . '/../Views/find/findResult.php';
     }
 }
