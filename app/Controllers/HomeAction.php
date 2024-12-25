@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use app\Repository\UserRepository;
+
 final class HomeAction
 {
     public function __invoke()
     {
-        require_once __DIR__ . '/../Views/home/home.php';
+        $db = new UserRepository;
+        $users = $db->findAll();
+
+        require_once __DIR__ . '/../Views/user/list.php';
     }
 }
