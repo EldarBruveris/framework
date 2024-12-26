@@ -84,7 +84,7 @@
           <td><?=$value->gender;?></td>
           <td><?=$value->status;?></td>
           <td class="action-td"><button onclick="show(<?=$value->id; ?>)" class="action-btn">show</button></td>
-          <td class="action-td"><button class="action-btn">edit</button></td>
+          <td class="action-td"><button onclick="edit(<?=$value->id; ?>)" class="action-btn">edit</button></td>
           <td class="action-td"><button class="action-btn">delete</button></td>
         </tr>
         <?php endforeach; ?>
@@ -97,6 +97,10 @@
     <script>
       function show(value){
         window.location.replace("/show/" + value);
+      }
+      
+      function edit(value){
+        window.location.replace("/users/edit/" + value);
       }
     </script>
 </body>

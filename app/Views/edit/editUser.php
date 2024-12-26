@@ -10,8 +10,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .back-btn{
+            align-self: flex-start;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            background-color: darkseagreen;
+            height: 35px;
+            width: 250px;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
+    <a href="/users" class="back-btn">Вернуться к таблице</a>
     
     <form action="/users/:userID" method="put">
         <label for="email">Email:</label>

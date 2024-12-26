@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
+    <style>
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form label{
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    form input, select{
+        width: 150px;
+        height: 30px;
+    }
+    .btn{
+        margin-top: 100px;
+        padding: 35px 75px;
+        font-size: 26px;
+        background-color: darkseagreen;
+        color: #072829;
+        border: none;
+        border-radius: 20px;
+        transition-duration: 0.3s;
+    }
+    .btn:hover{
+        background-color: rgb(108, 143, 108);
+        color: #bfd5d6;
+        cursor: pointer;
+        box-shadow: 6px 6px 5px black;
+        transition-duration: 0.3s;
+    }
+    .back-btn{
+        align-self: flex-start;
+        text-decoration: none;
+        color: #000;
+        font-size: 20px;
+        background-color: darkseagreen;
+        height: 35px;
+        width: 250px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 10px;
+    }
+    </style>
 </head>
 <body>
+    <a href="/users" class="back-btn">Вернуться к таблице</a>
     <form action="/users" method="post">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
