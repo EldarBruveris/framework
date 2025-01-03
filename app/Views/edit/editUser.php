@@ -53,8 +53,27 @@
             <?php endforeach;?>
         </select>
 
-        <button type="submit" class="btn">Submit</button>
+        <button type="submit" class="btn" id="submitBtn">Submit</button>
     </form>
+    <script>
+        const userId = "<?= strval($user->id);?>";
+        const userEmail = "<?= strval($user->email);?>";
+        const userName = "<?= strval($user->name);?>";
+        const userGender = "<?= strval($user->gender);?>";
+        const userStatus = "<?= strval($user->status);?>";
+        const button = document.getElementById("submitBtn");
+        button.addEventListener('submit', (event) => {
+            event.preventDefault()
+            fetch(`http://localhost:8080/users/edit/${userId}`)
+            .then((response) => {
+            console.log('response: ', response)
+
+            return response.json();
+        })
+        })
+
+        
+    </script>
 </body>
 </html>
 
