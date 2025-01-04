@@ -35,8 +35,14 @@ class UserRepository extends AbstractRepository{
     }
 
     public function edit(User $user): bool{
-        $query = "UPDATE users SET name = {$user->name}, email = {$user->email} , gender = {$user->gender}, status = {$user->status} WHERE id = {$user->id}";
+        $query = "UPDATE users SET full_name = :name, email = :email , gender = :gender, status = :status  WHERE id = {$user->id}";
         $statement = $this->connection->prepare($query);
-        return true;
+        return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);
+    }
+
+    public function delete($userID){
+        $query = "DELETE FROM users WHERE id = {$userID}";
+        $statement = $this->connection->exec($query);
+        
     }
 }

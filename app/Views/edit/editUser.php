@@ -32,7 +32,7 @@
 <body>
     <a href="/users" class="back-btn">Вернуться к таблице</a>
     
-    <form action="/users/:userID" method="put">
+    <form action="/users/:userID" method="post">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required value="<?=$user->email;?>">
 
