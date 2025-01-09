@@ -85,7 +85,7 @@
           <td><?=$value->status;?></td>
           <td class="action-td"><button onclick="show(<?=$value->id; ?>)" class="action-btn">show</button></td>
           <td class="action-td"><button onclick="edit(<?=$value->id; ?>)" class="action-btn">edit</button></td>
-          <td class="action-td"><button class="action-btn">delete</button></td>
+          <td class="action-td"><button onclick="deleteUser(<?=$value->id?>)" class="action-btn">delete</button></td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -101,6 +101,17 @@
       
       function edit(value){
         window.location.replace("/users/edit/" + value);
+      }
+
+      function deleteUser(value){
+        fetch('localhost:8080/users', {method: "DELETE"})
+        .then((response) => {
+            return response.json();
+        })
+            .then((data) => {
+                console.log(data);
+                alert(data.message);
+            })
       }
     </script>
 </body>

@@ -19,4 +19,8 @@ class User extends UserSave{
         }
         return null;
     }
+
+    public function __set(string $name, $value){
+        $this->$name = $value;
+    }
 }

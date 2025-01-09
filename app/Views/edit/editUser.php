@@ -32,7 +32,7 @@
 <body>
     <a href="/users" class="back-btn">Вернуться к таблице</a>
     
-    <form action="/users/:userID" method="post">
+    <form action="/users" method="post" id="editForm">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required value="<?=$user->email;?>">
 
@@ -57,19 +57,22 @@
     </form>
     <script>
         const userId = "<?= strval($user->id);?>";
-        const userEmail = "<?= strval($user->email);?>";
-        const userName = "<?= strval($user->name);?>";
-        const userGender = "<?= strval($user->gender);?>";
-        const userStatus = "<?= strval($user->status);?>";
-        const button = document.getElementById("submitBtn");
-        button.addEventListener('submit', (event) => {
-            event.preventDefault()
-            fetch(`http://localhost:8080/users/edit/${userId}`)
+        
+        const form = document.getElementById("editForm");
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = {};
+            new FormData(event.target).forEach((value, key) => {
+                formData[key] = value;
+            });
+            fetch(`http://localhost:8080/users/edit/${userId}`, {method: "PUT", body: JSON.stringify(formData)})
             .then((response) => {
-            console.log('response: ', response)
-
             return response.json();
         })
+            .then((data) => {
+                console.log(data);
+                alert(data.message);
+            })
         })
 
         
