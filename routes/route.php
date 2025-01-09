@@ -16,9 +16,8 @@ use app\Infrastructure\Router\Router;
 $router = new Router();
 
 $router->addRoute('GET', '/users', new UserAction());
-$router->addRoute('DELETE', '/users', new UserDeleteAction());
+$router->addRoute('DELETE', '/users/:userID', new UserDeleteAction());
 $router->addRoute('GET', '/', new HomeAction());
-$router->addRoute('DELETE', '/', new UserDeleteAction());
 $router->addRoute('GET', '/users/new', new FormAction());
 $router->addRoute('POST', '/users', new ResultAction());
 $router->addRoute('GET', '/show/:userID', new ShowAction());

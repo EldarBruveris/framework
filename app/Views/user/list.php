@@ -77,7 +77,7 @@
             <th colspan="3">Actions</th>
         </tr>
     <?php foreach($users as $key=>$value): ?>
-        <tr>
+        <tr id="row-<?=$value->id;?>">
           <td><?=$value->id;?></td>
           <td><?=$value->name;?></td>
           <td><?=$value->email;?></td>
@@ -104,14 +104,20 @@
       }
 
       function deleteUser(value){
-        fetch('localhost:8080/users', {method: "DELETE"})
+        fetch(`/users/${value}`, {method: "DELETE"})
         .then((response) => {
             return response.json();
         })
-            .then((data) => {
-                console.log(data);
-                alert(data.message);
-            })
+        .then((data) => {
+            console.log(data);
+            alert(data.message);
+            if(data.status == 'success'){
+              const row = document.getElementById(`row-${value}`);
+              if (row) {
+                row.remove();
+              }
+            }
+          })
       }
     </script>
 </body>
