@@ -16,8 +16,8 @@ final class UserAction
         $db = new UserRepository;
         $users = $db->findAll();
         echo TwigSingleton::getInstance()->render('users.html.twig', [
-            'data' => $users,
+            'users' => $users,
         ]);
-        require_once __DIR__ . '/../Views/user/list.php';
+        //require_once __DIR__ . '/../Views/user/list.php';
     }
 }

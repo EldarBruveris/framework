@@ -3,10 +3,10 @@
 namespace App\Models;
 
 class UserSave{
-    protected string $name;
-    protected string $email;
-    protected string $gender;
-    protected string $status;
+    public string $name;
+    public string $email;
+    public string $gender;
+    public string $status;
 
     public function __construct(string $name, string $email, string $gender, string $status)
     {

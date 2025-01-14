@@ -3,7 +3,7 @@
 namespace App\Models;
 
 class User extends UserSave{
-    private int $id;
+    public int $id;
     public function __construct(int $id, string $name, string $email, string $gender, string $status)
     {
         $this->id = $id;
