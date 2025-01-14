@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Controllers;
+namespace App\Controllers;
 
-use app\Validation\UserValidation;
+use App\Validation\UserValidation;
 
 class FormController
 {

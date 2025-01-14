@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Repository;
+namespace App\Repository;
 
-use app\Service\Database\Connection;
+use App\Service\Database\Connection;
 
 abstract class AbstractRepository{
     protected \PDO $connection;

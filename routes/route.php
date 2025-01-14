@@ -6,12 +6,12 @@ use App\Controllers\HomeAction;
 use App\Controllers\FormAction;
 use App\Controllers\ResultAction;
 use App\Controllers\ShowAction;
-use app\Controllers\UserAction;
+use App\Controllers\UserAction;
 use App\Controllers\UserDeleteAction;
 use App\Controllers\UserDetailsAction;
 use App\Controllers\UserEditAction;
 use App\Controllers\UserUpdateAction;
-use app\Infrastructure\Router\Router;
+use App\Infrastructure\Router\Router;
 
 $router = new Router();
 

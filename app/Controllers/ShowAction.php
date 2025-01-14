@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use app\Repository\UserRepository;
+use App\Repository\UserRepository;
 
 final class ShowAction
 {

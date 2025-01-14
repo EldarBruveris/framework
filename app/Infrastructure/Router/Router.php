@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Infrastructure\Router;
+namespace App\Infrastructure\Router;
 
 class Router{
     protected $routes = [];

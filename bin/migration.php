@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use app\Infrastructure\AbstractMigration;
-use app\Service\Database\Connection;
+use App\Infrastructure\AbstractMigration;
+use App\Service\Database\Connection;
 
 require_once __DIR__ . "/../bootstrap/autoload.php";
 

@@ -1,8 +1,8 @@
 <?php
-namespace app\Repository;
+namespace App\Repository;
 
-use app\Models\User;
-use app\Models\UserSave;
+use App\Models\User;
+use App\Models\UserSave;
 use PDO;
 
 class UserRepository extends AbstractRepository{

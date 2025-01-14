@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\Infrastructure\AbstractMigration;
+use App\Infrastructure\AbstractMigration;
 
 return new class extends AbstractMigration
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Service\Database;
+namespace App\Service\Database;
 
 class Connection {
     private static ?\PDO $connection = null;

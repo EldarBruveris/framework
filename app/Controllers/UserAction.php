@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use app\Models\User;
-use app\Repository\UserRepository;
+use App\Models\User;
+use App\Repository\UserRepository;
 
 final class UserAction
 {

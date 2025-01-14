@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace app\Infrastructure;
+namespace App\Infrastructure;
 
-use app\Service\Database\Connection;
+use App\Service\Database\Connection;
 
 abstract class AbstractMigration
 {

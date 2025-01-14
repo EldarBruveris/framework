@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Validation;
+namespace App\Validation;
 
 class UserValidation
 {
