@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Repository\UserRepository;
+use App\Service\TwigSingleton;
 
 final class UserAction
 {
@@ -14,7 +15,9 @@ final class UserAction
         
         $db = new UserRepository;
         $users = $db->findAll();
-    
+        echo TwigSingleton::getInstance()->render('users.html.twig', [
+            'data' => $users,
+        ]);
         require_once __DIR__ . '/../Views/user/list.php';
     }
 }

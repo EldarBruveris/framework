@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Repository\UserRepository;
+use App\Service\TwigSingleton;
 
 final class UserEditAction
 {
