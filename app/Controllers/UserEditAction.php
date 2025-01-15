@@ -15,6 +15,9 @@ final class UserEditAction
         $db = new UserRepository();
         $user = $db->find("id", $userID);
 
-        require_once __DIR__ . '/../Views/edit/editUser.php';
+        echo TwigSingleton::getInstance()->render('editUser.html.twig', [
+            'user' => $user,
+        ]);
+        //require_once __DIR__ . '/../Views/edit/editUser.php';
     }
 }
