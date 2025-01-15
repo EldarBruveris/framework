@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Find user page{% endblock %}
+
+{% block content %}
+    <form action="/findResult" method="post">
+        <label for="choice">Критерий поиска</label>
+        <select id="choice" name="choice" required>
+            <option value="id">id</option>
+            <option value="email">email</option>
+            <option value="name">name</option>
+        </select>
+    
+        <label for="value">Значение:</label>
+        <input type="text" id="value" name="value" required>
+    
+        <button type="submit" class="btn">Submit</button>
+    </form>
+{% endblock %}

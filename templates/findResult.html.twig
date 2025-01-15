@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Find user page{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.status}}</td>
+        </tr>
+    </table>
+    <a href="/users/edit/{{user.id}}"><button class="btn">Редактировать</button></a>
+{% endblock %}

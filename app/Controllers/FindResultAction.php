@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Repository\UserRepository;
+use App\Service\TwigSingleton;
 
 final class FindResultAction
 {
@@ -16,6 +17,10 @@ final class FindResultAction
         
         $user = $db->find($critery, $value);
 
-        require_once __DIR__ . '/../Views/find/findResult.php';
+        echo TwigSingleton::getInstance()->render('findResult.html.twig', [
+            'user' => $user,
+        ]);
+
+        //require_once __DIR__ . '/../Views/find/findResult.php';
     }
 }
