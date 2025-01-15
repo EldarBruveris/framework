@@ -39,4 +39,26 @@
         </select>
         <button type="submit" class="btn" id="submitBtn">Submit</button>
     </form>
+    <script>
+        const userId = '{{user.id}}';
+        
+        const form = document.getElementById("editForm");
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = {};
+            new FormData(event.target).forEach((value, key) => {
+                formData[key] = value;
+            });
+            fetch(`http://localhost:8080/users/edit/${userId}`, {method: "PUT", body: JSON.stringify(formData)})
+            .then((response) => {
+            return response.json();
+        })
+            .then((data) => {
+                console.log(data);
+                alert(data.message);
+            })
+        })
+
+        
+    </script>
 {% endblock %}
