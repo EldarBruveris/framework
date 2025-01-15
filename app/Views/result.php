@@ -25,11 +25,6 @@
   </style>
 </head>
 <body>
-  <!-- <ul>
-    <?php foreach($_POST as $key=>$value): ?>
-      <li><b><?php echo $key;?></b> <?=$value;?></li>
-    <?php endforeach; ?>
-  </ul> -->
   <h1>User is saved succesfully</h1>
   <a href="/users/new"><button class="btn">Вернуться назад</button></a>
 </body>
