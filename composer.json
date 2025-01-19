@@ -1,7 +1,8 @@
 {
     "type": "project",
     "require": {
-        "twig/twig": "^3.18"
+        "twig/twig": "^3.18",
+        "knplabs/knp-paginator-bundle": "^6.6"
     },
     "autoload": {
         "psr-4": {

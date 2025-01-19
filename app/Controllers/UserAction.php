@@ -15,8 +15,14 @@ final class UserAction
         
         $db = new UserRepository;
         $users = $db->findAll();
+        $paginatedData = $db->getPaginatedData(1, 10);
+
         echo TwigSingleton::getInstance()->render('users.html.twig', [
-            'users' => $users,
+            'users' => $paginatedData['data'],
+            'pagination' => [
+                'page' => $paginatedData['page'], 
+                'totalPages' => $paginatedData['totalPages'],
+            ],
         ]);
         //require_once __DIR__ . '/../Views/user/list.php';
     }

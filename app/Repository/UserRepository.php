@@ -6,7 +6,7 @@ use App\Models\UserSave;
 use PDO;
 
 class UserRepository extends AbstractRepository{
-    //TODO поиск одного пользователя по email/ID/гендер... 
+
     public function find($critery, $value){
         $query = "SELECT * FROM users WHERE {$critery} = {$value}";
         $statement = $this->connection->query($query);
@@ -15,7 +15,6 @@ class UserRepository extends AbstractRepository{
         return $user;
     }
 
-    //TODO выбрать всех из БД
     public function findAll(): array {
         $users = [];
         $query = "SELECT * FROM users ORDER BY id";
@@ -27,7 +26,6 @@ class UserRepository extends AbstractRepository{
         return $users;
     }
 
-    //TODO сохранение одного пользователя
     public function save(UserSave $user): bool{
         $query = "INSERT INTO users (email, full_name, gender, status) VALUES(:email, :full_name, :gender, :status)";
         $statement = $this->connection->prepare($query);
@@ -44,5 +42,29 @@ class UserRepository extends AbstractRepository{
         $query = "DELETE FROM users WHERE id = {$userID}";
         $statement = $this->connection->exec($query);
         
+    }
+
+    public function getPaginatedData(int $page = 1, int $perPage = 10): array
+    {
+        $offset = ($page - 1) * $perPage;
+
+        $query = "SELECT * FROM users LIMIT :perPage OFFSET :offset";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue(':perPage', $perPage, \PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $totalQuery = "SELECT COUNT(*) as total FROM users";
+        $stmt = $this->connection->query($totalQuery);
+        $total = $stmt->fetch(\PDO::FETCH_ASSOC)['total'];
+
+        return [
+            'data' => $data,
+            'total' => $total,
+            'page' => $page,
+            'perPage' => $perPage,
+            'totalPages' => ceil($total / $perPage),
+        ];
     }
 }
