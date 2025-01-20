@@ -18,8 +18,7 @@ class Router{
 
     public function matchRoute(){
         $method = $_SERVER['REQUEST_METHOD'];
-        $url = rtrim($_SERVER['REQUEST_URI'], '/')  ;
-
+        $url = parse_url(rtrim($_SERVER['REQUEST_URI'], '/'))['path'];
         if (!$url) {    
         $url = '/';
         }

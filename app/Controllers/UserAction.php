@@ -12,17 +12,19 @@ final class UserAction
 {
     public function __invoke()
     {
-        
         $db = new UserRepository;
-        $users = $db->findAll();
-        $paginatedData = $db->getPaginatedData(1, 10);
+        $page = (int)($_GET['page'] ?? 1);
+        $perPage = 10;
+        
+        $paginatedData = $db->getPaginatedData($page, $perPage);
+        $totalPages = $db->getMaxPages($perPage);
 
         echo TwigSingleton::getInstance()->render('users.html.twig', [
-            'users' => $paginatedData['data'],
+            'users' => $paginatedData,
             'pagination' => [
-                'page' => $paginatedData['page'], 
-                'totalPages' => $paginatedData['totalPages'],
-            ],
+                    'page' => $page,
+                    'totalPages' => $totalPages,
+                ],
         ]);
         //require_once __DIR__ . '/../Views/user/list.php';
     }
