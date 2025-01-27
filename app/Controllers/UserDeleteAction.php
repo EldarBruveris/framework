@@ -15,7 +15,6 @@ final class UserDeleteAction
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $db = new UserRepository();
             $db->delete($userID);
-
             echo json_encode(['status' => 'success', 'message' => 'Data deleted successfully']);
         } else {
             http_response_code(405);

@@ -55,7 +55,7 @@ class UserRepository extends AbstractRepository{
     {
         $offset = ($page - 1) * $perPage;
 
-        $query = "SELECT * FROM users LIMIT {$perPage} OFFSET {$offset}";
+        $query = "SELECT * FROM users ORDER BY id LIMIT {$perPage} OFFSET {$offset}";
         $statement = $this->connection->query($query);
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
             $users[] = new User($row['id'], $row['email'], $row['full_name'], $row['gender'], $row['status']);

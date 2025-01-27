@@ -16,7 +16,7 @@ final class ResultAction
         $user = new UserSave($_POST['name'], $_POST['email'], $_POST['gender'], $_POST['status']);
         $db = new UserRepository;
         if ($db->save($user)){
-            
+            header("Location:/users");
         }
     }
 }
