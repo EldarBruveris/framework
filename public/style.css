@@ -6,9 +6,7 @@ body{
     justify-content: center;
     flex-direction: column;
 }
-*{
-    margin: 0;
-}
+
 header{
     width: 100%;
 }
@@ -34,41 +32,6 @@ footer{
     justify-content: center;
     justify-self: flex-end;
 }
-table, tr, td, th{
-    border: 1px solid black;
-}
-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-th{
-    height: 50px;
-}
-td{
-    text-align: center;
-}
-.buttons{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    justify-content: space-between;
-}
-.action-td{
-    width: 100px;
-    text-align: center;
-}
-.action-btn{
-    width: 90%;
-    background-color: darkseagreen;
-    color: #fff;
-    border: none;
-    height: 35px;
-    font-size: 15px;
-}
-.action-btn:hover{
-    cursor: pointer;
-}
 .link{
     text-decoration: none;
     background-color: darkseagreen;
@@ -84,35 +47,6 @@ td{
     box-shadow: 6px 6px 5px black;
     transition-duration: 0.3s;
 }
-.btn{
-    margin-top: 30px;
-    padding: 35px 75px;
-    font-size: 26px;
-    background-color: darkseagreen;
-    color: #072829;
-    border: none;
-    border-radius: 20px;
-    transition-duration: 0.3s;
-}
-.btn:hover{
-    background-color: rgb(108, 143, 108);
-    color: #bfd5d6;
-    cursor: pointer;
-    box-shadow: 6px 6px 5px black;
-    transition-duration: 0.3s;
-}
-.back-btn{
-    align-self: flex-start;
-    text-decoration: none;
-    color: #000;
-    font-size: 20px;
-    background-color: darkseagreen;
-    height: 35px;
-    width: 250px;
-    text-align: center;
-    border-radius: 10px;
-}
-
 form{
     display: flex;
     flex-direction: column;
