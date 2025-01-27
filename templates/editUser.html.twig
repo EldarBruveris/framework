@@ -37,7 +37,7 @@
                 <option value="{{ key }}" {{ key == user.status ? 'selected' : '' }}>{{value}}</option>
             {% endfor %}
         </select>
-        <button type="submit" class="btn" id="submitBtn">Submit</button>
+        <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Submit</button>
     </form>
     <script>
         const userId = '{{user.id}}';

@@ -16,7 +16,7 @@ final class ResultAction
         $user = new UserSave($_POST['name'], $_POST['email'], $_POST['gender'], $_POST['status']);
         $db = new UserRepository;
         if ($db->save($user)){
-            require_once __DIR__ . '/../Views/result.php'; 
+            
         }
     }
 }
