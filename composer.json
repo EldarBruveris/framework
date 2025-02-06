@@ -2,7 +2,9 @@
     "type": "project",
     "require": {
         "twig/twig": "^3.18",
-        "knplabs/knp-paginator-bundle": "^6.6"
+        "knplabs/knp-paginator-bundle": "^6.6",
+        "guzzlehttp/psr7": "^2.7",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "autoload": {
         "psr-4": {
