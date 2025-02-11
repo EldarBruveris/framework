@@ -7,11 +7,20 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Repository\UserRepository;
 use App\Service\TwigSingleton;
+use GuzzleHttp\Client;
 
 final class UserAction
 {
     public function __invoke()
     {
+        $client = new Client([
+            'base_uri' => 'https://gorest.co.in/public/v2/',
+        ]);
+        $response = $client->request('GET', 'users');
+        $body = $response->getBody()->getContents();
+        $usersAPI = json_decode($body, true);
+
+        
         $db = new UserRepository;
         $page = (int)($_GET['page'] ?? 1);
         $perPage = 10;
