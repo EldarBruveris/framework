@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Repository\UserAPIRepository;
 use App\Repository\UserRepository;
 use App\Service\TwigSingleton;
 
@@ -12,7 +13,7 @@ final class ShowAction
     public function __invoke($userID)
     {
         $db = new UserRepository();
-        
+        $client = new UserAPIRepository;
         $user = $db->find($userID, 'id');
         echo TwigSingleton::getInstance()->render('findResult.html.twig', [
             'user' => $user,

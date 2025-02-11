@@ -13,9 +13,19 @@ class UserAPIRepository extends AbstractRepository{
         // $statement = $this->connection->query($query);
         // $row = $statement->fetch(PDO::FETCH_ASSOC);
         // $user = new User($row['id'], $row['full_name'], $row['email'], $row['gender'], $row['status']);
-        // return $user;
+        // return $user;    
 
-        
+        $response = $this->client->request('GET', 'users');
+        $body = $response->getBody()->getContents();
+        $users = json_decode($body, true);
+        $foundUser = null;
+        foreach($users as $user){
+            if($user["$critery"]==$value){
+                $foundUser = $user;
+                break;
+            }
+        }
+        return $foundUser;
     }
 
     public function findAll(): array{
