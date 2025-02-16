@@ -24,37 +24,43 @@ class UserApiRepository extends AbstractApiRepository implements UserRepositoryI
     }
 
     public function create(UserSave $user): bool{
-        // $query = "INSERT INTO users (email, full_name, gender, status) VALUES(:email, :full_name, :gender, :status)";
-        // $statement = $this->connection->prepare($query);
-        // return $statement->execute([':email' => $user->email, ':full_name' => $user->name, ':gender' => $user->gender, ':status' => $user->status]);
-        $response = $this->client->request('POST', 'users');
-        return true;
-
-
-
+        $response = $this->client->request('POST', 'users',[
+            'headers' => [
+                'Authorization' => 'Bearer '. $this->TOKEN,
+                'Content-Type' => 'application/json'
+            ],
+            'json' => $user
+        ]);
+        if($response) return true;
+        else return false;
     }
 
-    public function update(User $user): bool{
-        // $query = "UPDATE users SET full_name = :name, email = :email , gender = :gender, status = :status  WHERE id = {$user->id}";
-        // $statement = $this->connection->prepare($query);
-        // return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);
-        return true;
+    public function update(User $user, int $id): bool{
+        //TODO check why doesn't work
+        $parts = explode('/', $_SERVER['REQUEST_URI']);
+        $id = end($parts);
+        $response = $this->client->request('PUT', "users/{$id}",[
+            'headers' => [
+                'Authorization' => 'Bearer '. $this->TOKEN,
+                'Content-Type' => 'application/json'
+            ],
+            'json' => $user
+        ]);
+        if($response) return true;
+        else return false;
 
     }
 
     public function delete($id){
-        // $query = "DELETE FROM users WHERE id = {$userID}";
-        // $this->connection->exec($query);
+        $response = $this->client->request('DELETE', "users/{$id}", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->TOKEN,
+            ],
+        ]);
 
-
-        
     }
 
     public function getMaxPages($perPage = 10){
-        // $query = "SELECT COUNT(*) FROM users";
-        // $stmt = $this->connection->query($query);
-        // $rowCount = $stmt->fetchColumn();
-        // return ceil($rowCount/$perPage);
         $response = $this->client->request('GET', 'users');
         $body = $response->getBody()->getContents();
         $users = json_decode($body, true);

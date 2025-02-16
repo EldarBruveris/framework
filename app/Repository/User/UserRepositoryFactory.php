@@ -11,7 +11,7 @@ class UserRepositoryFactory
 {
     public static function getRepository(): UserRepositoryInterface
     {
-        $source = $_COOKIE['user_source'] ?? 'database';
+        $source = $_COOKIE['user_source'] ?? 'api';
         
         return match($source){
             'database' => new UserRepository(),

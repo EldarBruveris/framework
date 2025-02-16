@@ -23,7 +23,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $statement->execute([':email' => $user->email, ':full_name' => $user->name, ':gender' => $user->gender, ':status' => $user->status]);
     }
 
-    public function update(User $user): bool{
+    public function update(User $user, int $id): bool{
         $query = "UPDATE users SET full_name = :name, email = :email , gender = :gender, status = :status  WHERE id = {$user->id}";
         $statement = $this->connection->prepare($query);
         return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);

@@ -29,7 +29,7 @@ final class UserUpdateAction extends AbstractUserAction
             $user['user']->status = $data["status"];
             $user['user']->gender = $data["gender"];
             $user['user']->name = $data["name"];
-            $this->repository->update($user['user']);
+            $this->repository->update($user['user'], $userID);
 
             echo json_encode(['status' => 'success', 'message' => 'Data updated successfully']);
         } else {

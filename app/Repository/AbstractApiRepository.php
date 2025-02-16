@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 abstract class AbstractApiRepository
 {
     protected Client $client;
+    protected $TOKEN = '2834119cad3fef2d82d9e9b934917ffcad7975d65ced6d62ffe7b46fe6205cdb';
 
     public function __construct()
     {
