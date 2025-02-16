@@ -8,14 +8,12 @@ use App\Repository\UserRepository;
 use App\Service\Test;
 use App\Service\TwigSingleton;
 
-final class HomeAction
+final class HomeAction extends AbstractUserAction
 {
     public function __invoke()
     {
-        $db = new UserRepository;
-        $users = $db->findAll();
 
-        echo TwigSingleton::getInstance()->render('home.html.twig');
+        $this->render('home.html.twig');
         // require_once __DIR__ . '/../Views/user/list.php';
     }
 }

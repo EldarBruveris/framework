@@ -8,16 +8,13 @@ use App\Repository\UserAPIRepository;
 use App\Repository\UserRepository;
 use App\Service\TwigSingleton;
 
-final class ShowAction
+final class ShowAction extends AbstractUserAction
 {
     public function __invoke($userID)
     {
-        $db = new UserRepository();
-        $client = new UserAPIRepository;
-        $user = $db->find($userID, 'id');
-        echo TwigSingleton::getInstance()->render('findResult.html.twig', [
-            'user' => $user,
-        ]);
+        $user = $this->repository->show((int)$userID);
+        $this->render('findResult.html.twig', $user);
+        
 
         //require_once __DIR__ . '/../Views/find/findResult.php';
     }

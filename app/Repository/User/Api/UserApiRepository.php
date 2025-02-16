@@ -1,66 +1,48 @@
 <?php
-namespace App\Repository;
+namespace App\Repository\User\Api;
 
 use App\Models\User;
 use App\Models\UserSave;
-use GuzzleHttp\Client;
-use PDO;
+use App\Repository\AbstractApiRepository;
+use App\Repository\User\UserRepositoryInterface;
 
-class UserAPIRepository extends AbstractRepository{
+class UserApiRepository extends AbstractApiRepository implements UserRepositoryInterface{
 
-    public function find($critery, $value){
-        // $query = "SELECT * FROM users WHERE {$critery} = {$value}";
-        // $statement = $this->connection->query($query);
-        // $row = $statement->fetch(PDO::FETCH_ASSOC);
-        // $user = new User($row['id'], $row['full_name'], $row['email'], $row['gender'], $row['status']);
-        // return $user;    
+    public function show($id){
 
         $response = $this->client->request('GET', 'users');
         $body = $response->getBody()->getContents();
         $users = json_decode($body, true);
         $foundUser = null;
         foreach($users as $user){
-            if($user["$critery"]==$value){
+            if($user["id"]==$id){
                 $foundUser = $user;
                 break;
             }
         }
-        return $foundUser;
+        return ['user' => $foundUser];
     }
 
-    public function findAll(): array{
-        // $users = [];
-        // $query = "SELECT * FROM users ORDER BY id";
-        // $statement = $this->connection->query($query);
-        // while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-        //     $users[] = new User($row['id'], $row['email'], $row['full_name'], $row['gender'], $row['status']);
-        // }
-
-        // return $users;
-
-        $response = $this->client->request('GET', 'users');
-        $body = $response->getBody()->getContents();
-        $users = json_decode($body, true);
-        return $users;
-
-    }
-
-    public function save(UserSave $user): bool{
+    public function create(UserSave $user): bool{
         // $query = "INSERT INTO users (email, full_name, gender, status) VALUES(:email, :full_name, :gender, :status)";
         // $statement = $this->connection->prepare($query);
         // return $statement->execute([':email' => $user->email, ':full_name' => $user->name, ':gender' => $user->gender, ':status' => $user->status]);
+        $response = $this->client->request('POST', 'users');
+        return true;
+
+
 
     }
 
-    public function edit(User $user): bool{
+    public function update(User $user): bool{
         // $query = "UPDATE users SET full_name = :name, email = :email , gender = :gender, status = :status  WHERE id = {$user->id}";
         // $statement = $this->connection->prepare($query);
         // return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);
-
+        return true;
 
     }
 
-    public function delete($userID){
+    public function delete($id){
         // $query = "DELETE FROM users WHERE id = {$userID}";
         // $this->connection->exec($query);
 
@@ -81,15 +63,9 @@ class UserAPIRepository extends AbstractRepository{
 
     }
 
-    public function getPaginatedData(int $page, int $perPage = 10): array
+    public function paginate(int $page, int $perPage = 10): array
     {
-        // $offset = ($page - 1) * $perPage;
-        // $query = "SELECT * FROM users ORDER BY id LIMIT {$perPage} OFFSET {$offset}";
-        // $statement = $this->connection->query($query);
-        // while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-        //     $users[] = new User($row['id'], $row['email'], $row['full_name'], $row['gender'], $row['status']);
-        // }
-        // return $users;
+        
 
         $response = $this->client->request('GET', 'users');
         $body = $response->getBody()->getContents();
