@@ -15,12 +15,6 @@ final class UserAction extends AbstractUserAction
         
         $paginatedData = $this->repository->paginate($page, $perPage);
 
-        $this->render('users.html.twig', [
-            'users' => $paginatedData,
-            'pagination' => [
-                    'page' => $page,
-                    'totalPages' => 3,
-                ],
-            ]);
+        $this->render('users.html.twig', $paginatedData);
     }
 }

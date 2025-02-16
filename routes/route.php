@@ -23,7 +23,7 @@ $router->addRoute('POST', '/users', new ResultAction());
 $router->addRoute('GET', '/show/:userID', new ShowAction());
 $router->addRoute('GET', '/users/edit/:userID', new UserEditAction());
 $router->addRoute('PUT', '/users/edit/:userID', new UserUpdateAction());
-$router->addRoute('GET', '/users/:userID', new UserDetailsAction());
+$router->addRoute('GET', '/users/:userID', new ShowAction());
 $router->addRoute('GET', '/find', new FindAction());
 $router->addRoute('POST', '/findResult', new FindResultAction());
 

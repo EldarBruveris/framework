@@ -8,16 +8,13 @@ use App\Models\User;
 use App\Repository\UserRepository;
 use App\Service\TwigSingleton;
 
-final class UserEditAction
+final class UserEditAction extends AbstractUserAction
 {
     public function __invoke($userID)
     {
-        $db = new UserRepository();
-        $user = $db->find("id", $userID);
+        $user = $this->repository->show((int)$userID);
 
-        echo TwigSingleton::getInstance()->render('editUser.html.twig', [
-            'user' => $user,
-        ]);
+        $this->render('editUser.html.twig', $user);
         //require_once __DIR__ . '/../Views/edit/editUser.php';
     }
 }

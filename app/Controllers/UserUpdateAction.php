@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Repository\UserRepository;
 use FTP\Connection;
 
-final class UserUpdateAction
+final class UserUpdateAction extends AbstractUserAction
 {
     public function __invoke($userID)
     {
@@ -23,14 +23,13 @@ final class UserUpdateAction
             if (json_last_error() !== JSON_ERROR_NONE) {
                 parse_str($putData, $data);
             }
-            //print_r($data);
-            $db = new UserRepository();
-            $user = $db->find("id", $userID);
-            $user->email = $data["email"];
-            $user->status = $data["status"];
-            $user->gender = $data["gender"];
-            $user->name = $data["name"];
-            $db->edit($user);
+
+            $user =  $this->repository->show((int)$userID);
+            $user['user']->email = $data["email"];
+            $user['user']->status = $data["status"];
+            $user['user']->gender = $data["gender"];
+            $user['user']->name = $data["name"];
+            $this->repository->update($user['user']);
 
             echo json_encode(['status' => 'success', 'message' => 'Data updated successfully']);
         } else {

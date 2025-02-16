@@ -52,6 +52,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             $users[] = new User($row['id'], $row['email'], $row['full_name'], $row['gender'], $row['status']);
         }
 
-        return $users;
+        return ['users' => $users,
+                'pagination' => [
+                    'page' => $page,
+                    'totalPages' => $this->getMaxPages($perPage)
+                    ],
+                ];
     }
 }

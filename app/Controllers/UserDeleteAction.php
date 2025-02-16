@@ -8,13 +8,12 @@ use App\Models\User;
 use App\Repository\UserRepository;
 use FTP\Connection;
 
-final class UserDeleteAction
+final class UserDeleteAction extends AbstractUserAction
 {
     public function __invoke($userID)
     {   
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-            $db = new UserRepository();
-            $db->delete($userID);
+            $db = $this->repository->delete($userID);
             echo json_encode(['status' => 'success', 'message' => 'Data deleted successfully']);
         } else {
             http_response_code(405);

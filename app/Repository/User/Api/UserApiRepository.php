@@ -72,6 +72,11 @@ class UserApiRepository extends AbstractApiRepository implements UserRepositoryI
         $users = json_decode($body, true);
         //TO DO странная пагинация
         $paginatedUsers = array_slice($users, $page==1 ? 0 : ($page-1)*$perPage, $perPage*$page);
-        return $paginatedUsers;
+        return ['users' => $paginatedUsers,
+                'pagination' => [
+                    'page' => $page,
+                    'totalPages' => $this->getMaxPages($perPage)
+                    ],
+                ];
     }
 }
