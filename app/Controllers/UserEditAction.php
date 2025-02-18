@@ -14,7 +14,7 @@ final class UserEditAction extends AbstractUserAction
     {
         $user = $this->repository->show((int)$userID);
 
-        $this->render('editUser.html.twig', $user);
+        $this->render('editUser.html.twig', ['user' => $user]);
         //require_once __DIR__ . '/../Views/edit/editUser.php';
     }
 }

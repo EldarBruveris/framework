@@ -8,19 +8,13 @@ use App\Repository\User\UserRepositoryInterface;
 
 class UserApiRepository extends AbstractApiRepository implements UserRepositoryInterface{
 
-    public function show($id){
+    public function show($id): User{
 
-        $response = $this->client->request('GET', 'users');
+        $response = $this->client->request('GET', "users/{$id}");
         $body = $response->getBody()->getContents();
-        $users = json_decode($body, true);
-        $foundUser = null;
-        foreach($users as $user){
-            if($user["id"]==$id){
-                $foundUser = $user;
-                break;
-            }
-        }
-        return ['user' => $foundUser];
+        $user = json_decode($body, true);
+        $user =  new User($user['id'], $user['name'], $user['email'], $user['gender'], $user['status']);
+        return $user;
     }
 
     public function create(UserSave $user): bool{
@@ -31,23 +25,20 @@ class UserApiRepository extends AbstractApiRepository implements UserRepositoryI
             ],
             'json' => $user
         ]);
-        if($response) return true;
-        else return false;
+        return $response->getStatusCode() === 201;
     }
 
-    public function update(User $user, int $id): bool{
+    public function update(User $user): bool{
         //TODO check why doesn't work
         $parts = explode('/', $_SERVER['REQUEST_URI']);
-        $id = end($parts);
-        $response = $this->client->request('PUT', "users/{$id}",[
+        $response = $this->client->request('PUT', "users/{$user->id}",[
             'headers' => [
                 'Authorization' => 'Bearer '. $this->TOKEN,
                 'Content-Type' => 'application/json'
             ],
             'json' => $user
         ]);
-        if($response) return true;
-        else return false;
+        return $response->getStatusCode() === 200;
 
     }
 
@@ -64,21 +55,25 @@ class UserApiRepository extends AbstractApiRepository implements UserRepositoryI
         $response = $this->client->request('GET', 'users');
         $body = $response->getBody()->getContents();
         $users = json_decode($body, true);
-        return ceil(count($users)/$perPage);
+        return 30;
 
 
     }
 
     public function paginate(int $page, int $perPage = 10): array
     {
-        
+        if($page <=0 ) $page =1;
 
-        $response = $this->client->request('GET', 'users');
+        $response = $this->client->request('GET', 'users', [
+            'query' =>[
+                'page' => $page,
+                'per_page' => $perPage
+            ]
+        ]);
         $body = $response->getBody()->getContents();
         $users = json_decode($body, true);
         //TO DO странная пагинация
-        $paginatedUsers = array_slice($users, $page==1 ? 0 : ($page-1)*$perPage, $perPage*$page);
-        return ['users' => $paginatedUsers,
+        return ['users' => $users,
                 'pagination' => [
                     'page' => $page,
                     'totalPages' => $this->getMaxPages($perPage)

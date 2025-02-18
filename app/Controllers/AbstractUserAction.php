@@ -21,4 +21,13 @@ abstract class AbstractUserAction
     {
         echo TwigSingleton::getInstance()->render($view, $parameters);
     }
+    
+    public function redirect(string $url){
+        header("Location:".$url);
+    }
+
+    public function json($data, int $status = 200){
+        http_response_code($status);
+        echo json_encode($data);
+    }
 }

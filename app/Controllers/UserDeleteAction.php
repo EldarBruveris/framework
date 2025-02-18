@@ -14,10 +14,9 @@ final class UserDeleteAction extends AbstractUserAction
     {   
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $db = $this->repository->delete($userID);
-            echo json_encode(['status' => 'success', 'message' => 'Data deleted successfully']);
+            $this->json(['status' => 'success', 'message' => 'Data deleted successfully']);
         } else {
-            http_response_code(405);
-            echo json_encode(['status' => 'error', 'message' => 'Server error']);   
+            $this->json(['status' => 'error', 'message' => 'Server error'], 500);   
         }
     }
 }

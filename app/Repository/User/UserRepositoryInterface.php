@@ -11,11 +11,11 @@ interface UserRepositoryInterface
 {
     public function paginate(int $page, int $perPage = 20): array;
 
-    public function show(int $id);
+    public function show(int $id): User;
 
     public function create(UserSave $user): bool;
 
-    public function update(User $user, int $id): bool;
+    public function update(User $user): bool;
 
     public function delete(int $id);
 }

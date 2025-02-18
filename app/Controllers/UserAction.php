@@ -11,7 +11,7 @@ final class UserAction extends AbstractUserAction
     public function __invoke()
     {       
         $page = (int)($_GET['page'] ?? 1);
-        $perPage = (int)($_GET['perPage'] ?? 5);
+        $perPage = (int)($_GET['perPage'] ?? 10);
         
         $paginatedData = $this->repository->paginate($page, $perPage);
 

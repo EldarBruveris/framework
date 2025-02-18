@@ -9,12 +9,12 @@ use PDO;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface{
 
-    public function show(int $id){
+    public function show(int $id): User{
         $query = "SELECT * FROM users WHERE id = {$id}";
         $statement = $this->connection->query($query);
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         $user = new User($row['id'], $row['full_name'], $row['email'], $row['gender'], $row['status']);
-        return ['user' => $user];
+        return $user;
     }
 
     public function create(UserSave $user): bool{
@@ -23,7 +23,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $statement->execute([':email' => $user->email, ':full_name' => $user->name, ':gender' => $user->gender, ':status' => $user->status]);
     }
 
-    public function update(User $user, int $id): bool{
+    public function update(User $user): bool{
         $query = "UPDATE users SET full_name = :name, email = :email , gender = :gender, status = :status  WHERE id = {$user->id}";
         $statement = $this->connection->prepare($query);
         return $statement->execute([':name' => $user->name, ':email' => $user->email, ':gender' => $user->gender, ':status' => $user->status]);

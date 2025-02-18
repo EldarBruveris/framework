@@ -13,7 +13,7 @@ final class ShowAction extends AbstractUserAction
     public function __invoke($userID)
     {
         $user = $this->repository->show((int)$userID);
-        $this->render('findResult.html.twig', $user);
+        $this->render('findResult.html.twig', ['user' => $user]);
         
 
         //require_once __DIR__ . '/../Views/find/findResult.php';

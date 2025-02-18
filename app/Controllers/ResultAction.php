@@ -16,7 +16,7 @@ final class ResultAction extends AbstractUserAction
         $user = new UserSave($_POST['name'], $_POST['email'], $_POST['gender'], $_POST['status']);
         $db = $this->repository->create($user);
         if ($db){
-            header("Location:/users");
+            $this->redirect("/users");
         }
     }
 }
