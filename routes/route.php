@@ -10,6 +10,7 @@ use App\Controllers\UserAction;
 use App\Controllers\UserDeleteAction;
 use App\Controllers\UserDetailsAction;
 use App\Controllers\UserEditAction;
+use App\Controllers\UserSourceAction;
 use App\Controllers\UserUpdateAction;
 use App\Infrastructure\Router\Router;
 
@@ -26,6 +27,7 @@ $router->addRoute('PUT', '/users/edit/:userID', new UserUpdateAction());
 $router->addRoute('GET', '/users/:userID', new ShowAction());
 $router->addRoute('GET', '/find', new FindAction());
 $router->addRoute('POST', '/findResult', new FindResultAction());
+$router->addRoute('POST', '/changeUserStore', new UserSourceAction());
 
 
 
